@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -18,6 +19,10 @@ jobs:
           echo "${{ secrets.EC2_SSH_KEY }}" | tr -d '\r' > private_key.pem
           chmod 600 private_key.pem
 
+      - name: Debug key file
+        run: |
+          ls -l private_key.pem
+
       - name: Deploy to EC2
         run: |
-          ssh -o StrictHostKeyChecking=no -i private_key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "bash /home/ubuntu/deploy.sh"
+          ssh -o StrictHostKeyChecking=no -i private_key.pem ubuntu@18.209.14.89 "bash /home/ubuntu/deploy.sh"
