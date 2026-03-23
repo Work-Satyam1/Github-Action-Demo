@@ -25,4 +25,4 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          ssh -o StrictHostKeyChecking=no -i private_key.pem ubuntu@18.209.14.89 "bash /home/ubuntu/deploy.sh"
+          ssh -o StrictHostKeyChecking=no -i private_key.pem ubuntu@3.87.88.97 "bash /home/ubuntu/deploy.sh"
